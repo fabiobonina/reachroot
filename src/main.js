@@ -10,6 +10,13 @@ import store from './store/store'
 
 Vue.use(VueMaterial)
 
+Vue.material.registerTheme('default', {
+  primary: 'cyan',
+  accent: 'red',
+  warn: 'red',
+  background: 'white'
+})
+
 // Initialize Firebase
 var config = {
   apiKey: "AIzaSyARzHvxkE2OltzCipFR311uemD8dOdnq3U",

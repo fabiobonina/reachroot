@@ -3,11 +3,11 @@
     <div class="ui modal" id="fileModal">
         <i class="close icon"></i>
         <div class="header">
-            Envoyer un fichier
+            Enviar um arquivo
         </div>
         <div class="content">
             <div class="description">
-                <div class="ui header">Choisissez un fichier <em>( jpg, png, 1 mb max )</em></div>
+                <div class="ui header">Escolha um arquivo <em>( jpg, png, 1 mb max )</em></div>
                 <form class="ui form">
                     <div class="field">
                         <input type="file" name="file" id="file" @change="addFile">
@@ -18,10 +18,10 @@
         </div>
         <div class="actions">
             <div class="ui black deny button">
-                Annuler
+                cancelar
             </div>
             <div class="ui right green labeled icon button" @click.prevent="sendFile">
-                Envoyer
+                enviar
                 <i class="checkmark icon"></i>
             </div>
         </div>
