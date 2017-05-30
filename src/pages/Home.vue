@@ -16,12 +16,13 @@
       </md-button>
     </md-toolbar>
     <md-sidenav class="md-left" ref="leftSidenav" @open="open('Left')" @close="close('Left')">
-      <md-toolbar class="md-dense">
-        <div class="md-toolbar-container">
-          <h3 class="md-title">Menu</h3>
-        </div>
-      </md-toolbar>
-      <md-list>
+      <div>
+        <md-toolbar class="md-dense">
+          <div class="md-toolbar-container">
+            <h3 class="md-title">Menu</h3>
+          </div>
+        </md-toolbar>
+        <md-list>
           <md-list-item>
             <router-link to="/clientes">Clientes</router-link>
           </md-list-item>
@@ -30,6 +31,7 @@
           </md-list-item>
           <md-list-item>Sair</md-list-item>
         </md-list>
+      </div>
     </md-sidenav>
 
     <md-sidenav class="md-right" ref="rightSidenav" @open="open('Right')" @close="close('Right')">
