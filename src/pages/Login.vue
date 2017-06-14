@@ -9,7 +9,7 @@
                     #Tuto::Slack#
                 </div>
             </h2>
-            <form class="ui large form" :class="{ 'error' : hasErrors }">
+            <form class="ui large form" :class="{ 'error' : temErros }">
                 <div class="ui stacked segment">
 
                     <div class="field">
@@ -29,7 +29,7 @@
                     <div class="ui fluid large orange button" @click.prevent="login" :class="{ 'loading': isLoading }">Conecte-se</div>
                 </div>
 
-                <div class="ui error message" v-if="hasErrors">
+                <div class="ui error message" v-if="temErros">
                     <p v-for="error in errors">{{ error }}</p>
                 </div>
 
@@ -46,21 +46,25 @@
                             <h3 class="md-title">SkyHub Web | Mobi</h3>
                         </div>
                     </md-toolbar>
+                    <div class="ui error message" v-if="temErros">
+                        <p v-for="error in errors">{{ error }}</p>
+                    </div>
                     
                     <div>
-                        <form novalidate @submit.stop.prevent="submit">
+                        <form novalidate @submit.stop.prevent="submit" :class="{ 'error' : temErros }">
                             <md-input-container>
                                 <label>Email</label>
-                                <md-input type="email"></md-input>
+                                <md-input type="email" v-model.trim="email"></md-input>
                             </md-input-container>
                             <md-input-container>
                                 <label>Senha</label>
-                                <md-input type="password"></md-input>
+                                <md-input type="password" v-model.trim="password"></md-input>
                             </md-input-container>
+
                         </form>
                         <md-bottom-bar md-shift class="md-raised md-accent">
-                                <md-button class="md-primary"@click.prevent="login" :class="{ 'loading': isLoading }">Conecte-se</md-button>
-                            </md-bottom-bar>
+                            <md-button class="md-primary" @click.native="login()">Conecte-se</md-button>
+                        </md-bottom-bar>
                     </div>
 
                     <div>
@@ -72,6 +76,7 @@
             </div>
             </md-layout>
          </md-layout>
+         <prev>{{ $data }}</prev>
 </div>
 </template>
 
@@ -87,7 +92,7 @@ export default {
             }
         },
         computed: {
-            hasErrors () {
+            temErros () {
                 return this.errors.length > 0
             }
         },
@@ -96,7 +101,7 @@ export default {
                 console.log("login")
                 this.errors = []
                 
-                if(this.isFormValid()){
+                if(this.validarForm()){
                     this.isLoading = true
 
                     firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(user => {
@@ -110,7 +115,7 @@ export default {
                     })
                 }
             },
-            isFormValid(){
+            validarForm(){
                 if(this.email.length > 0 && this.password.length > 0){
                     return true
                 }
