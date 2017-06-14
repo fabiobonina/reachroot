@@ -1,5 +1,5 @@
 <template>
-
+    
     <div id="app"class="phone-viewport">
         <md-toolbar>
             <md-button class="md-icon-button" @click.native="toggleLeftSidenav">
@@ -45,6 +45,14 @@
 
     <md-button class="md-raised md-accent" @click.native="closeRightSidenav">Close</md-button>
   </md-sidenav>
+  <md-layout md-gutter>
+    <md-layout md-flex="33">
+        <channels></channels>   
+    </md-layout>
+    <md-layout>
+    
+    </md-layout>
+  </md-layout>
   </div>
 
 </template>
@@ -52,10 +60,11 @@
 <script>
 import { mapGetters } from 'vuex'
 import ConnectedUser from './ConnectedUser'
+import Channels from './Channels'
 export default {
     name: 'app',
     components: {
-        ConnectedUser
+        ConnectedUser, Channels
     },
     computed: {
         ...mapGetters(['currentUser'])
@@ -88,18 +97,6 @@ export default {
 
 <style scoped>
 
-.sidebar{
-    position: fixed;
-    display: flex;
-    flex-flow: column nowrap;
-    width: 300px;
-    padding: 10px;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    background-color: #795548;
-    padding-top: 110px;
-}
 
 
 </style>

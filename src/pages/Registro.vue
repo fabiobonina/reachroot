@@ -67,6 +67,7 @@
                 email: '',
                 password: '',
                 password_confirmation: '',
+                nivel: 0,
                 errors: [],
                 usersRef: firebase.database().ref('users'),
                 isLoading: false
@@ -87,7 +88,8 @@
 
                     user.updateProfile({
                         displayName: this.name,
-                        photoURL: "http://www.gravatar.com/avatar/"+md5(user.email)+"?d=identicon"
+                        photoURL: "http://www.gravatar.com/avatar/"+md5(user.email)+"?d=identicon",
+                        nivel: this.nivel
                     }).then ( () => {
 
                         //Enregistrement de l'utilisateur en bdd

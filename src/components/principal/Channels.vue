@@ -1,26 +1,41 @@
 <template>
     
     <div class="channels__container">
+        <md-button class="md-fab md-fab-bottom-right" id="fab" @click.native="openDialog('dialog2')">
+            <md-icon>add</md-icon>
+        </md-button>
         <h2 class="ui inverted center aligned header">Canais <i class="add square icon add_channel" @click="openChannelModal"></i></h2>
         <div class="ui raised padded segment channels__list">
-            <ul>
-                <li class="channels__item" 
-                    v-for="channel in channels" 
-                    :key="channel.id" 
-                    :class="{'is_active': setChannelActive(channel)}"
-                    @click="changeChannel(channel)">
-                    # {{ channel.name }}
-                    <div class="ui label purple channel__count" v-if="getNotification(channel) > 0 && channel.id !== currentChannel.id">{{ getNotification(channel) }}</div>
-               </li>
-            </ul>
-        </div>
+            <div class="phone-viewport">
+                <md-list class="custom-list md-triple-line md-dense" 
+                v-for="cliente in channels" 
+                :key="cliente.id" 
+                :class="{'is_active': setChannelActive(cliente)}"
+                @click="changeChannel(cliente)"
+                >
+                    <md-list-item>
+                        <div class="md-list-text-container">
+                            <span> {{ cliente.nick }} </span>
+                            <span> {{ cliente.nome }} </span>
+                        </div>
 
+                        <md-button class="md-icon-button md-list-action">
+                            <md-icon class="md-primary">star</md-icon>
+                        </md-button>
+
+                        
+                        <div class="ui label purple channel__count" v-if="getNotification(cliente) > 0 && cliente.id !== currentChannel.id">{{ getNotification(cliente) }}</div>
+                    </md-list-item>
+                    <md-divider class="md-inset"></md-divider>
+                </md-list>
+            </div>
+        </div>
 
         <!-- Modal Pour ajouter un Channel -->
 
         <div class="ui basic modal" id="channelModal">
             <div class="ui icon header">
-                Adicionar Canal
+                Adicionar Cliente
             </div>
 
             <div class="content">
@@ -63,7 +78,7 @@
             return {
                 channels: [],
                 new_channel: '',
-                channelsRef: firebase.database().ref('channels'),
+                channelsRef: firebase.database().ref('clientes'),
                 messagesRef: firebase.database().ref('messages'),
                 errors: [],
                 firstLoad: true,

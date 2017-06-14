@@ -1,7 +1,7 @@
 <template>
 
 
-
+<div>   
 <div class="ui middle aligned center aligned grid login__container">
         <div class="column">
             <h2 class="ui orange header">
@@ -34,12 +34,44 @@
                 </div>
 
             </form>
-
-            <div class="ui message">
-                É novo aqui?
-                <router-link to="/registro">Criar Conta</router-link>
-            </div>
         </div>
+
+</div>
+        <md-layout md-align="center" >
+            <md-layout md-column md-gutter md-flex="35">
+            <div>
+                <div>
+                    <md-toolbar>
+                        <div class="md-toolbar-container">
+                            <h3 class="md-title">SkyHub Web | Mobi</h3>
+                        </div>
+                    </md-toolbar>
+                    
+                    <div>
+                        <form novalidate @submit.stop.prevent="submit">
+                            <md-input-container>
+                                <label>Email</label>
+                                <md-input type="email"></md-input>
+                            </md-input-container>
+                            <md-input-container>
+                                <label>Senha</label>
+                                <md-input type="password"></md-input>
+                            </md-input-container>
+                        </form>
+                        <md-bottom-bar md-shift class="md-raised md-accent">
+                                <md-button class="md-primary"@click.prevent="login" :class="{ 'loading': isLoading }">Conecte-se</md-button>
+                            </md-bottom-bar>
+                    </div>
+
+                    <div>
+                        <md-bottom-bar  md-shift md-theme="teal">
+                            <spam><br/>É novo aqui? <router-link to="/registro">Criar Conta</router-link></spam>
+                        </md-bottom-bar>
+                    </div>
+                </div>
+            </div>
+            </md-layout>
+         </md-layout>
 </div>
 </template>
 
@@ -95,4 +127,6 @@ export default {
     .column{
         max-width: 450px;
     }
+
+
 </style>
